@@ -27,7 +27,7 @@
     # http://<ServerAddress>:<Port>
 ```
 > 맥 서비스 파일 만들기 (macOS Plist)
-1. Create plist file : /Library/LaunchDaemons/MyDomain.plist
+1. Create plist file : ~/Library라이브러리/LaunchAgents/MyDomain.plist
 2. plist example
 ```xml
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
@@ -59,11 +59,11 @@
 3. Service Test (서비스 파일 이상유무 확인하기)
 ```bash
     # load
-    launchctl load -w /Library/LaunchDaemons/MayDomainName.plist
+    launchctl load -w ~/Library/LaunchDaemons/MayDomainName.plist
     # check 
     launchctl list | grep <plist Label : Service Name>
     # unload
-    launchctl unload /Library/LaunchDaemons/MyDomainName.plist
+    launchctl unload ~/Library/LaunchDaemons/MyDomainName.plist
 ```
 
 4. Start Always : 
