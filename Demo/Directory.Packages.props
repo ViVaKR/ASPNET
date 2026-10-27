@@ -1,0 +1,16 @@
+<Project>
+  <PropertyGroup>
+    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+
+    <!-- 중앙 파일에 없는 패키지를 개별 프로젝트가 쓸 때 에러/경고를 띄울지 여부 -->
+    <CentralPackagesFileCheckingEnabled>true</CentralPackagesFileCheckingEnabled>
+    <!-- 간접 패키지 버전까지 중앙에서 강제로 고정(Pinning)할지 여부 -->
+    <CentralPackageTransitivePinningEnabled>true</CentralPackageTransitivePinningEnabled>
+
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageVersion Include="Microsoft.AspNetCore.OpenApi" Version="10.0.14" />
+    <PackageVersion Include="Microsoft.EntityFrameworkCore.InMemory" Version="10.0.14" />
+  </ItemGroup>
+
+</Project>
