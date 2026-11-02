@@ -1,0 +1,6 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/AiChatServer.Contracts/AiChatServer.Contracts.csproj" />
+    <Project Path="src/AiChatServer.Grpc/AiChatServer.Grpc.csproj" />
+  </Folder>
+</Solution>

@@ -1,0 +1,63 @@
+syntax = "proto3";
+
+option csharp_namespace = "AiChatServer.Contracts.V1";
+package aichat.v1;
+
+// ChatService (static 외곽 클래스)
+// ChatService.ChatServiceBase (서버용 추상클래스)
+// ChatService.ChatServiceClient (클라이언트용)
+service ChatService {
+
+  // Complet
+  rpc Complete (ChatRequest) returns (ChatReply);
+
+  // StreamChat
+  rpc StreamChat (ChatRequest) returns (stream ChatChunk);
+}
+
+enum ChatRole {
+  CHAT_ROLE_UNSPECIFIED = 0;   // proto3 규칙: 0번은 반드시 UNSPECIFIED
+  CHAT_ROLE_USER        = 1;
+  CHAT_ROLE_ASSISTANT   = 2;
+}
+
+enum Persona {
+  PERSONA_UNSPECIFIED = 0;
+  PERSONA_BEOPDEUNG   = 1;     // 법등 (buddham.co.kr AI 법사)
+}
+
+enum ChunkKind {
+  CHUNK_KIND_UNSPECIFIED = 0;
+  CHUNK_KIND_THINKING    = 1;  // 사고 과정 (UI에서 접어서 표시)
+  CHUNK_KIND_CONTENT     = 2;  // 실제 답변
+}
+
+message ChatMessage {
+  ChatRole role = 1;
+  string content = 2;
+}
+
+message ChatRequest {
+  string conversation_id = 1;
+  Persona persona = 2;
+  repeated ChatMessage messages = 3;
+}
+
+message ChatReply {
+  string conversation_id = 1;
+  ChatMessage message = 2;
+  Usage usage = 3;
+}
+
+message ChatChunk {
+  string conversation_id = 1;
+  ChunkKind kind = 2;
+  string delta = 3;
+  bool done = 4;
+  Usage usage = 5;             // done=true인 마지막 청크에만 채움
+}
+
+message Usage {
+  int32 prompt_tokens = 1;
+  int32 completion_tokens = 2;
+}
